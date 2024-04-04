@@ -3,7 +3,7 @@ import enderecoController from '../controllers/EnderecoController';
 
 const router = new Router();
 
-router.get('/', enderecoController.index);
+router.get('/enderecos/', enderecoController.index);
 router.get('/:id', enderecoController.show);
 
 router.post('/', enderecoController.store);

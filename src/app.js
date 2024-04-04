@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import dotenv from 'dotenv';
 import { resolve } from 'path';
 
@@ -20,7 +19,6 @@ class App {
   middlewares() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
-    this.app.use('/images/', express.static(resolve(__dirname, '..', 'uploads', 'images')));
   }
 
   routes() {
