@@ -8,6 +8,7 @@ import './database';
 
 import express from 'express';
 import pessoaRoutes from './routes/pessoaRoutes';
+import enderecoRoutes from './routes/enderecoRoutes';
 
 class App {
   constructor() {
@@ -24,6 +25,7 @@ class App {
 
   routes() {
     this.app.use('/', pessoaRoutes);
+    this.app.use('/enderecos/', enderecoRoutes);
   }
 }
 

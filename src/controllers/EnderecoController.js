@@ -1,12 +1,10 @@
-import Pessoa from '../models/Pessoa';
+import Endereco from '../models/Endereco';
 
-class PessoaController {
+class EnderecoController {
   async store(req, res) {
     try {
-      const data_nascimento = new Date(req.body.data_nascimento).toISOString().slice(0, 19).replace('T', ' ');
-      req.body.data_nascimento = data_nascimento;
-      const novaPessoa = await Pessoa.create(req.body);
-      return res.json(novaPessoa);
+      const novoEndereco = await Endereco.create(req.body);
+      return res.json(novoEndereco);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -17,8 +15,8 @@ class PessoaController {
   // Index
   async index(req, res) {
     try {
-      const pessoas = await Pessoa.findAll();
-      return res.json(pessoas);
+      const enderecos = await Endereco.findAll();
+      return res.json(enderecos);
     } catch (e) {
       return res.json(null);
     }
@@ -27,28 +25,27 @@ class PessoaController {
   // Show
   async show(req, res) {
     try {
-      const pessoaId = parseInt(req.params.id);
+      const enderecoId = parseInt(req.body.id);
 
-      const pessoa = await Pessoa.findByPk(pessoaId);
-
-      return res.json(pessoa);
+      const endereco = await Endereco.findByPk(enderecoId);
+      return res.json(endereco);
     } catch (e) {
-      return res.json(req.params);
+      return res.json(null);
     }
   }
 
   // Update
   async update(req, res) {
     try {
-      const pessoa = await Pessoa.findByPk(req.body.id);
+      const endereco = await Endereco.findByPk(req.body.id);
 
-      if (!pessoa) {
+      if (!endereco) {
         return res.status(404).json({
-          errors: ['Pessoa não encontrada!'],
+          errors: ['Endereço não encontrado!'],
         });
       }
 
-      const novoDados = await pessoa.update(req.body);
+      const novoDados = await endereco.update(req.body);
       return res.json(novoDados);
     } catch (e) {
       console.log(e);
@@ -61,7 +58,7 @@ class PessoaController {
   // Delete
   async delete(req, res) {
     try {
-      const pessoa = await Pessoa.findByPk(req.body.id);
+      const endereco = await Endereco.findByPk(req.body.id);
 
       if (!req.body.id) {
         return res.status(400).json({
@@ -74,8 +71,8 @@ class PessoaController {
         });
       }
 
-      await pessoa.destroy();
-      return res.json(pessoa);
+      await endereco.destroy();
+      return res.json(endereco);
     } catch (e) {
       console.log(e);
       return res.status(400).json(null);
@@ -83,4 +80,4 @@ class PessoaController {
   }
 }
 
-export default new PessoaController();
+export default new EnderecoController();

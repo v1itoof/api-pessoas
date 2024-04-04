@@ -41,6 +41,6 @@ export default class Endereco extends Model {
 
   static associate(models) {
     // Associação com a model Pessoa
-    this.belongsTo(models.Pessoa, { foreignKey: 'pessoa_id', as: 'pessoa' });
+    this.belongsTo(models.Pessoa, { foreignKey: 'pessoa_id' });
   }
 }
