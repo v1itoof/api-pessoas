@@ -1,8 +1,19 @@
 import Endereco from '../models/Endereco';
+import Pessoa from '../models/Pessoa';
 
 class EnderecoController {
   async store(req, res) {
     try {
+      const pessoaId = req.body.pessoa_id;
+
+      const pessoa = await Pessoa.findByPk(pessoaId);
+
+      if (!pessoa) {
+        return res.status(404).json({
+          errors: ['Pessoa não existe!'],
+        });
+      }
+
       const novoEndereco = await Endereco.create(req.body);
       return res.json(novoEndereco);
     } catch (e) {
@@ -25,7 +36,7 @@ class EnderecoController {
   // Show
   async show(req, res) {
     try {
-      const enderecoId = parseInt(req.body.id);
+      const enderecoId = parseInt(req.params.id);
 
       const endereco = await Endereco.findByPk(enderecoId);
       return res.json(endereco);
@@ -37,7 +48,7 @@ class EnderecoController {
   // Update
   async update(req, res) {
     try {
-      const endereco = await Endereco.findByPk(req.body.id);
+      const endereco = await Endereco.findByPk(req.params.id);
 
       if (!endereco) {
         return res.status(404).json({
@@ -58,16 +69,16 @@ class EnderecoController {
   // Delete
   async delete(req, res) {
     try {
-      const endereco = await Endereco.findByPk(req.body.id);
-
       if (!req.body.id) {
         return res.status(400).json({
           errors: ['ID não enviado!'],
         });
       }
-      if (!pessoa) {
+      const endereco = await Endereco.findByPk(req.body.id);
+
+      if (!endereco) {
         return res.status(400).json({
-          errors: ['Pessoa não encontrada!'],
+          errors: ['endereco não encontrada!'],
         });
       }
 

@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import { resolve } from 'path';
 
 dotenv.config();
 
@@ -22,7 +21,7 @@ class App {
   }
 
   routes() {
-    this.app.use('/', pessoaRoutes);
+    this.app.use('/pessoas/', pessoaRoutes);
     this.app.use('/enderecos/', enderecoRoutes);
   }
 }

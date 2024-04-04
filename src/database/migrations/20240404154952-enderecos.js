@@ -17,9 +17,8 @@ module.exports = {
         },
       },
       cep: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       endereco: {
         type: Sequelize.STRING,
