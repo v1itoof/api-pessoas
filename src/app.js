@@ -7,6 +7,8 @@ import './database';
 
 import express from 'express';
 import pessoaRoutes from './routes/pessoaRoutes';
+import userRoutes from './routes/userRoutes';
+import tokenRoutes from './routes/tokenRoutes';
 import enderecoRoutes from './routes/enderecoRoutes';
 
 class App {
@@ -23,6 +25,8 @@ class App {
   }
 
   routes() {
+    this.app.use('/users/', userRoutes);
+    this.app.use('/token/', tokenRoutes);
     this.app.use('/pessoas/', pessoaRoutes);
     this.app.use('/enderecos/', enderecoRoutes);
   }
