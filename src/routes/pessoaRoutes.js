@@ -7,7 +7,7 @@ router.get('/', pessoaController.index);
 router.get('/:id', pessoaController.show);
 
 router.post('/', pessoaController.store);
-router.put('/', pessoaController.update);
-router.delete('/', pessoaController.delete);
+router.put('/:id', pessoaController.update);
+router.delete('/:id', pessoaController.delete);
 
 export default router;

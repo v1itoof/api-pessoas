@@ -40,7 +40,7 @@ class PessoaController {
   // Update
   async update(req, res) {
     try {
-      const pessoa = await Pessoa.findByPk(req.body.id);
+      const pessoa = await Pessoa.findByPk(req.params.id);
 
       if (!pessoa) {
         return res.status(404).json({
@@ -61,13 +61,8 @@ class PessoaController {
   // Delete
   async delete(req, res) {
     try {
-      const pessoa = await Pessoa.findByPk(req.body.id);
+      const pessoa = await Pessoa.findByPk(req.params.id);
 
-      if (!req.body.id) {
-        return res.status(400).json({
-          errors: ['ID não enviado!'],
-        });
-      }
       if (!pessoa) {
         return res.status(400).json({
           errors: ['Pessoa não encontrada!'],
