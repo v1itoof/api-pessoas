@@ -3,8 +3,6 @@ import Pessoa from '../models/Pessoa';
 class PessoaController {
   async store(req, res) {
     try {
-      const data_nascimento = new Date(req.body.data_nascimento).toISOString().slice(0, 19).replace('T', ' ');
-      req.body.data_nascimento = data_nascimento;
       const novaPessoa = await Pessoa.create(req.body);
       return res.json(novaPessoa);
     } catch (e) {
