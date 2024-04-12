@@ -8,6 +8,6 @@ router.get('/:id', enderecoController.show);
 
 router.post('/', enderecoController.store);
 router.put('/:id', enderecoController.update);
-router.delete('/', enderecoController.delete);
+router.delete('/:id', enderecoController.delete);
 
 export default router;

@@ -36,9 +36,11 @@ class EnderecoController {
   // Show
   async show(req, res) {
     try {
-      const enderecoId = parseInt(req.params.id);
+      const pessoaId = parseInt(req.params.id);
 
-      const endereco = await Endereco.findByPk(enderecoId);
+      const endereco = await Endereco.findAll({
+        where: { pessoa_id: pessoaId },
+      });
       return res.json(endereco);
     } catch (e) {
       return res.json(null);
@@ -69,12 +71,12 @@ class EnderecoController {
   // Delete
   async delete(req, res) {
     try {
-      if (!req.body.id) {
+      if (!req.params.id) {
         return res.status(400).json({
           errors: ['ID não enviado!'],
         });
       }
-      const endereco = await Endereco.findByPk(req.body.id);
+      const endereco = await Endereco.findByPk(req.params.id);
 
       if (!endereco) {
         return res.status(400).json({

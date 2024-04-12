@@ -65,7 +65,9 @@ export default class Pessoa extends Model {
       hooks: {
         beforeValidate: (pessoa) => {
           if (pessoa.data_nascimento) {
+            // Soma um dia a mais da data de nascimento
             pessoa.data_nascimento = new Date(pessoa.data_nascimento);
+            pessoa.data_nascimento.setDate(pessoa.data_nascimento.getDate() + 1);
           }
         },
       },
