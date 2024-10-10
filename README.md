@@ -24,7 +24,6 @@ Esta é uma API desenvolvida para gerenciar informações básicas sobre pessoas
 ## Pré-requisitos
 
 - Node.js e npm instalados na máquina.
-- Docker instalado (opcional, se você quiser executar o banco de dados em um contêiner Docker).
 
 ## Instalação
 
